@@ -1,27 +1,13 @@
-#ifndef NODE_H_INCLUDED
-#define NODE_H_INCLUDED
+#include "Node.h"
 #include<iostream>
-#include<cstring>
 using namespace std;
-class Node{
-    private:
+Node::Node(char new_name[20], int level)
+{
+    setName(new_name);
 
-        char name[20];
+    // Allocate memory to forward
+    forward = new Node*[level+1];
 
-    public:
-
-        char * getName(){
-            return name;
-        }
-
-        void setName(char * new_name){
-            strcpy(this->name, new_name);
-        }
-
-    // Hold pointers to node of different level
-    Node **forward;
-    Node(char name[20] = "", int level = 0);
+    // Fill forward array with 0(NULL)
+    memset(forward, 0, sizeof(Node*)*(level+1));
 };
-
-
-#endif // NODE_H_INCLUDED
